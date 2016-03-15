@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!--
+Autor: Austere (Lunyov Dmytro, Odessa) austere93@bitbucket.org
+-->
+<html lang="ru-RU">
+<head>
+  <title>Minute - Подсчёт калорий</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
+  <meta http-equiv="Cache-Control" content="no-cache"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="js/FileSaver.js"></script>
+  <script type="text/javascript" src="js/localstorage.js"></script>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+  <header>
+    <div class="logoType"></div>
+    <div class="logoTitle">Minute</div>
+  </header>
+  <!--Первый продукт!-->
+  <div class="wrapper" id="wrapper">
+    <div class="title"><p style="padding-top: 10px;"> Minute - Подсчёт калорий</p></div>
+    <div class="string">
+      <input placeholder="Название продукта" type="text" id="FirstProductName" onkeyup="localstorageFirstDesc();" onkeyup="sum(), localstorageFirst();"/>
+    </div>
+    <select size="5" class="description1" id="selectDesFirst">
+      <option>Не выбрано</option>
+    </select>
+
+    <div class="string"> 
+     <input type="text" placeholder="Вес" id="FirstProductWeight" onkeyup="FirstFunc(this), sum();"/>
+   </div>
+   <div class="string"> 
+    <input placeholder="кКал/100 г" type="text" id="FirstProductCalorie" onclick="localstorageFirst();" onkeyup="FirstFunc(this), sum();"/>
+  </div> 
+  <div class="sum"> 
+    <div id="FirstCalorieSum"></div>
+  </div>
+
+  <!--Второй продукт!-->
+  <div class="string"> 
+    <input placeholder="Название продукта" type="text" id="SecondProductName" onkeyup="localstorageSecondDesc();" onkeyup="sum(), localstorageSecond();"/>
+  </div>
+  <select size="5" class="description2" id="selectDesSecond">
+    <option>Не выбрано</option>
+  </select>
+  <div class="string"> 
+    <input type="text" placeholder="Вес" id="SecondProductWeight" onkeyup="SecondFunc(this), sum();"/>
+  </div>
+  <div class="string"> 
+    <input placeholder="кКал/100 г" type="text" id="SecondProductCalorie" onclick="localstorageSecond();" onkeyup="SecondFunc(this), sum(), addPost3();"/>
+  </div> 
+  <div class="sum"> 
+   <div id="SecondCalorieSum"></div>
+ </div>
+
+ <!--Третий продукт!-->
+ <div id="add3Product">
+  <div class="string">
+    <input placeholder="Название продукта" type="text" id="ThirdProductName" onkeyup="localstorageThirdDesc();" onkeyup="sum(), localstorageThird();"/>
+  </div>
+  <select size="5" class="description3" id="selectDesThird">
+    <option>Не выбрано</option>
+  </select>
+  <div class="string">
+    <input type="text" placeholder="Вес" id="ThirdProductWeight" onkeyup="ThirdFunc(this), sum();"/>
+  </div>
+  <div class="string">
+    <input placeholder="кКал/100 г" type="text" id="ThirdProductCalorie" onclick="localstorageThird();" onkeyup="ThirdFunc(this), sum(), addPost4();"/>
+  </div>
+  <div class="sum">
+    <div id="ThirdCalorieSum"></div>
+  </div>
+</div>
+
+<!--4 продукт!-->
+<div id="add4Product">
+  <div class="string">
+    <input placeholder="Название продукта" type="text" id="FourProductName" onkeyup="localstorageFourDesc();" onkeyup="sum(), localstorageFour();"/>
+  </div>
+  <select size="5" class="description4" id="selectDesFour">
+    <option>Не выбрано</option>
+  </select>
+  <div class="string">
+    <input type="text" placeholder="Вес" id="FourProductWeight" onkeyup="FourFunc(this), sum();"/>
+  </div>
+  <div class="string">
+    <input placeholder="кКал/100 г" type="text" id="FourProductCalorie" onclick="localstorageFour();" onkeyup="FourFunc(this), sum(), addPost5();"/>
+  </div>
+  <div class="sum">
+    <div id="FourCalorieSum"></div>
+  </div>
+</div>
+
+<!--5 продукт!-->
+<div id="add5Product">
+  <div class="string">
+    <input placeholder="Название продукта" type="text" id="FiveProductName" onkeyup="localstorageFiveDesc();" onkeyup="sum(), localstorageFive();"/>
+  </div>
+  <select size="5" class="description5" id="selectDesFive">
+    <option>Не выбрано</option>
+  </select>
+  <div class="string">
+    <input type="text" placeholder="Вес" id="FiveProductWeight" onkeyup="FiveFunc(this), sum();"/>
+  </div>
+  <div class="string">
+    <input placeholder="кКал/100 г" type="text" id="FiveProductCalorie" onclick="localstorageFive();" onkeyup="FiveFunc(this), sum(), addPost6();"/>
+  </div>
+  <div class="sum">
+    <div id="FiveCalorieSum"></div>
+  </div>
+</div>
+
+
+<!--6 продукт!-->
+<div id="add6Product">
+  <div class="string">
+    <input placeholder="Название продукта" type="text" id="SixProductName" onkeyup="localstorageSixDesc();" onkeyup="sum(), localstorageSix();"/>
+  </div>
+  <select size="5" class="description6" id="selectDesSix">
+    <option>Не выбрано</option>
+  </select>
+  <div class="string">
+    <input placeholder="Вес" type="text" id="SixProductWeight" onkeyup="SixFunc(this), sum();"/>
+  </div>
+  <div class="string">
+    <input placeholder="кКал/100 г" type="text" id="SixProductCalorie" onclick="localstorageSix();" onkeyup="SixFunc(this), sum(), addPost7();"/>
+  </div>
+  <div class="sum">
+    <div id="SixCalorieSum"></div>
+  </div>
+</div>
+<!--7 продукт!-->
+<div id="add7Product">
+  <div class="string">
+    <input placeholder="Название продукта" type="text" id="SevenProductName" onkeyup="localstorageSevenDesc();" onkeyup="sum(), localstorageSeven();"/>
+  </div>
+  <select size="5" class="description7" id="selectDesSeven">
+    <option>Не выбрано</option>
+  </select>
+  <div class="string">
+    <input placeholder="Вес" type="text" id="SevenProductWeight" onkeyup="SevenFunc(this), sum();"/>
+  </div>
+  <div class="string">
+    <input placeholder="кКал/100 г" type="text" id="SevenProductCalorie" onclick="localstorageSeven();" onkeyup="SevenFunc(this), sum(), addPost8();"/>
+  </div>
+  <div class="sum">
+    <div id="SevenCalorieSum"></div>
+  </div>
+</div>
+<!--8 продукт!-->
+<div id="add8Product">
+  <div class="string">
+    <input placeholder="Название продукта" type="text" id="EightProductName" onkeyup="localstorageEightDesc();" onkeyup="sum(), localstorageEight();"/>
+  </div>
+  <select size="5" class="description8" id="selectDesEight">
+    <option>Не выбрано</option>
+  </select>
+  <div class="string">
+    <input placeholder="Вес" type="text" id="EightProductWeight" onkeyup="EightFunc(this), sum();"/>
+  </div>
+  <div class="string">
+    <input placeholder="кКал/100 г" type="text" id="EightProductCalorie" onclick="localstorageEight();" onkeyup="EightFunc(this), sum(), addPost9();"/>
+  </div>
+  <div class="sum">
+    <div id="EightCalorieSum"></div>
+  </div>
+</div>
+<div id="add9Product">
+  <div class="string">
+    <input placeholder="Название продукта" type="text" id="NineProductName" onkeyup="localstorageNineDesc();" onkeyup="sum(), localstorageNine();"/>
+  </div>
+  <select size="5" class="description9" id="selectDesNine">
+    <option>Не выбрано</option>
+  </select>
+  <div class="string">
+    <input placeholder="Вес" type="text" id="NineProductWeight" onkeyup="NineFunc(this), sum();"/>
+  </div>
+  <div class="string">
+    <input placeholder="кКал/100 г" type="text" id="NineProductCalorie" onclick="localstorageNine();" onkeyup="NineFunc(this), sum(), addPost10();"/>
+  </div>
+  <div class="sum">
+    <div id="NineCalorieSum"></div>
+  </div>
+</div>
+<div id="add10Product">
+  <div class="string">
+    <input placeholder="Название продукта" type="text" id="TenProductName" onkeyup="localstorageTenDesc();" onkeyup="sum(), localstorageTen();"/>
+  </div>
+  <select size="5" class="description10" id="selectDesTen">
+    <option>Не выбрано</option>
+  </select>
+  <div class="string">
+    <input placeholder="Вес" type="text" id="TenProductWeight" onkeyup="TenFunc(this), sum();"/>
+  </div>
+  <div class="string">
+    <input placeholder="кКал/100 г" type="text" id="TenProductCalorie" onclick="localstorageTen();" onkeyup="TenFunc(this), sum();"/>
+  </div>
+  <div class="sum">
+    <div id="TenCalorieSum"></div>
+  </div>
+</div>
+<div class="sumAll"> 
+ <span id="AllWeightSum"></span>
+ <span id="AllCalorieSum"></span>
+</div>
+
+<div class="localwork">
+
+  <button class="localButton" onclick="saver();">Скачать</button>
+
+</div>
+<div class="materialButton" onclick="sideBar();"></div>
+<!-- Выезжающая менюшка -->
+<div class="rightSidebar" id="side1" >
+  <div class="rightSidebarTitle" id="title1">Добавление нового продукта</div>
+  <form method="post" action="" id="form">
+    <input type="text" name="name" class="inputSidebar" placeholder="Название продукта" type="text" id="AddProductName"/>
+    <input type="text" name="calories" class="inputSidebar" placeholder="кКал/100 г" type="text" id="AddProductCalorie"/>
+    <input type="button" class="AddSidebar" onclick="send(), Adding(), deleteLocal();" value="Добавить"></input>
+  </form>
+  <div class="rightSidebarTitle2" id="title2">Работа с базой данных</div>
+  <button class="AddLocal" onclick="localworkclean();">Очистить хранилище</button>
+  <button class="AddLocal" onclick="storage();">Загрузить предыдущие данные</button>
+</div>
+
+<div class="blackBack" id="backgr" onclick="deleteLocal();"></div>
+
+</div>
+<script src="js/script.js"></script>
+<script src="js/AddLocal.js"></script>
+</body>
+</html>
+
+
